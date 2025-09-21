@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Course Design Interactive Modern with Progress</title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: #f9fafb;
+    color: #333;
+  }
+
+  /* Sidebar kiri */
+  .sidebar {
+    width: 320px;
+    border-right: 1px solid #e1e4e8;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    box-shadow: 2px 0 8px rgb(0 0 0 / 0.05);
+  }
+
+  /* Progress bar container */
+  .progress-container {
+    height: 12px;
+    background: #e5e7eb;
+    border-radius: 8px;
+    margin: 12px 16px 0 16px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #2563eb, #3b82f6);
+    border-radius: 8px;
+    transition: width 0.4s ease;
+  }
+  .progress-text {
+    font-size: 13px;
+    color: #374151;
+    font-weight: 600;
+    margin: 6px 16px 12px 16px;
+    user-select: none;
+  }
+
+  /* Tabs */
+  .tabs {
+    display: flex;
+    border-bottom: 2px solid #e1e4e8;
+    background: #fafafa;
+  }
+
+  .tab {
+    flex: 1;
+    padding: 14px 0;
+    text-align: center;
+    cursor: pointer;
+    font-weight: 600;
+    color: #6b7280;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+
+  .tab:hover {
+    color: #2563eb;
+    background: #f1f5f9;
+  }
+
+  .tab.active {
+    border-bottom-color: #2563eb;
+    color: #2563eb;
+    background: #e0e7ff;
+  }
+
+  /* Module list */
+  .module-list {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 0 16px 16px 16px;
+  }
+
+  /* Scrollbar modern */
+  .module-list::-webkit-scrollbar {
+    width: 8px;
+  }
+  .module-list::-webkit-scrollbar-track {
+    background: #f3f4f6;
+  }
+  .module-list::-webkit-scrollbar-thumb {
+    background-color: #9ca3af;
+    border-radius: 10px;
+  }
+
+  /* Module title */
+  .module-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin: 8px 0 4px 0;
+    cursor: pointer;
+    padding: 10px 14px;
+    border-radius: 8px;
+    background: #f3f4f6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    transition: all 0.3s ease;
+  }
+
+  .module-title:hover {
+    background: #e2e8f0;
+    transform: translateY(-1px);
+  }
+
+  .module-title.active {
+    background: #2563eb;
+    color: white;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+  }
+
+  .module-title.completed {
+    background: #16a34a;
+    color: white;
+  }
+
+  /* Arrow icon for expand/collapse */
+  .module-title svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+    transition: transform 0.3s ease;
+  }
+
+  .module-title.expanded svg {
+    transform: rotate(90deg);
+  }
+
+  /* Module content */
+  .module-content {
+    margin-left: 20px;
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.5;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease;
+  }
+
+  .module-content.open {
+    max-height: 1000px;
+    padding-top: 6px;
+    padding-bottom: 12px;
+  }
+
+  .module-content div {
+    padding: 6px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+    margin: 2px 0;
+    padding-left: 8px;
+    transition: background-color 0.2s ease;
+  }
+
+  .module-content div:hover {
+    background: #f1f5f9;
+  }
+
+  .module-content div.active {
+    background: #dbeafe;
+    border-left: 3px solid #2563eb;
+    font-weight: 600;
+  }
+
+  .module-content label {
+    cursor: pointer;
+    user-select: none;
+    flex-grow: 1;
+  }
+
+  .module-content input[type="checkbox"] {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #2563eb;
+  }
+
+  /* Konten utama kanan */
+  .content-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-shadow: inset 0 0 10px rgb(0 0 0 / 0.03);
+    position: relative;
+  }
+
+  .content-header {
+    padding: 16px 24px;
+    border-bottom: 1px solid #e1e4e8;
+    font-weight: 700;
+    font-size: 18px;
+    color: #111827;
+    background: #f9fafb;
+  }
+
+  /* Area image placeholder di atas */
+  .content-image-placeholder {
+    height: 200px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 28px;
+    position: relative;
+    user-select: none;
+    overflow: hidden;
+  }
+
+  .content-image-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="white" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  }
+
+  /* Action button (icon gear) pojok kanan atas gambar */
+  .content-image-placeholder .action-icon {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255 255 255 / 0.9);
+    border: 1.5px solid #d1d5db;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10;
+  }
+
+  .content-image-placeholder .action-icon:hover {
+    background: #2563eb;
+    border-color: #1d4ed8;
+    transform: rotate(90deg);
+  }
+
+  .content-image-placeholder .action-icon svg {
+    width: 22px;
+    height: 22px;
+    fill: #2563eb;
+    transition: fill 0.3s ease;
+  }
+
+  .content-image-placeholder .action-icon:hover svg {
+    fill: white;
+  }
+
+  /* Video placeholder */
+  .content-video-placeholder {
+    margin: 20px 36px;
+    background: #1e293b;
+    border-radius: 12px;
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #64748b;
+    font-weight: 600;
+    font-size: 20px;
+    user-select: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .content-video-placeholder::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    background: #2563eb;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .content-video-placeholder::after {
+    content: '▶';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-45%, -50%);
+    font-size: 32px;
+    color: white;
+    z-index: 2;
+  }
+
+  .content-video-placeholder:hover {
+    background: #0f172a;
+    cursor: pointer;
+  }
+
+  .content-video-placeholder:hover::before {
+    background: #3b82f6;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  /* Konten teks dengan scroll */
+  .content-detail {
+    flex-grow: 1;
+    padding: 24px 36px;
+    overflow-y: auto;
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.7;
+  }
+
+  .content-detail::-webkit-scrollbar {
+    width: 8px;
+  }
+  .content-detail::-webkit-scrollbar-track {
+    background: #f3f4f6;
+  }
+  .content-detail::-webkit-scrollbar-thumb {
+    background-color: #9ca3af;
+    border-radius: 10px;
+  }
+
+  /* Judul sub-section */
+  .content-section-title {
+    font-weight: 700;
+    font-size: 18px;
+    margin-top: 28px;
+    margin-bottom: 14px;
+    color: #1e293b;
+  }
+
+  /* Content cards */
+  .content-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+  }
+
+  .content-card h4 {
+    margin: 0 0 8px 0;
+    color: #1e293b;
+    font-weight: 600;
+  }
+
+  .content-card p {
+    margin: 0;
+    color: #64748b;
+    line-height: 1.6;
+  }
+
+  /* Table styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  thead tr {
+    background: #2563eb;
+    color: white;
+  }
+
+  th, td {
+    border: 1px solid #cbd5e1;
+    padding: 12px 14px;
+    text-align: left;
+  }
+
+  tbody tr {
+    background: white;
+    transition: background-color 0.2s ease;
+  }
+
+  tbody tr:nth-child(even) {
+    background: #f8fafc;
+  }
+
+  tbody tr:hover {
+    background: #e0f2fe;
+  }
+
+  /* Nav arrow next */
+  .nav-arrow {
+    position: absolute;
+    right: 24px;
+    top: 50%;
+    transform: translateY(-50%);
+    border: 2px solid #2563eb;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    font-size: 22px;
+    color: #2563eb;
+    cursor: pointer;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 2px 6px rgb(37 99 235 / 0.3);
+    transition: all 0.3s ease;
+    user-select: none;
+  }
+
+  .nav-arrow:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  /* Resources tab content */
+  .resources-content {
+    padding: 20px;
+  }
+
+  .resource-item {
+    padding: 12px 16px;
+    margin: 8px 0;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 4px solid #2563eb;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .resource-item:hover {
+    background: #e0f2fe;
+    transform: translateX(4px);
+  }
+
+  .resource-item h4 {
+    margin: 0 0 4px 0;
+    color: #1e293b;
+    font-size: 14px;
+  }
+
+  .resource-item p {
+    margin: 0;
+    color: #64748b;
+    font-size: 12px;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    body {
+      flex-direction: column;
+    }
+    .sidebar {
+      width: 100%;
+      height: 280px;
+      border-right: none;
+      border-bottom: 1px solid #e1e4e8;
+      box-shadow: none;
+    }
+    .content-area {
+      height: calc(100vh - 280px);
+    }
+    .nav-arrow {
+      right: 16px;
+      top: auto;
+      bottom: 16px;
+      transform: none;
+    }
+    .content-detail {
+      padding: 16px 20px;
+    }
+    .content-video-placeholder {
+      margin: 16px 20px;
+      height: 180px;
+    }
+  }
+
+  /* Animation for smooth transitions */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .content-area > * {
+    animation: fadeIn 0.3s ease-out;
+  }
+</style>
+</head>
+<body>
+
+<div class="sidebar" role="navigation" aria-label="Course navigation">
+  <div class="progress-container" aria-label="Course progress">
+    <div class="progress-bar" id="progress-bar"></div>
+  </div>
+  <div class="progress-text" id="progress-text">Progress: 0%</div>
+
+  <div class="tabs" role="tablist">
+    <div class="tab active" role="tab" tabindex="0" aria-selected="true" aria-controls="course-outline-panel" id="tab-course-outline">Course Outline</div>
+    <div class="tab" role="tab" tabindex="-1" aria-selected="false" aria-controls="resources-panel" id="tab-resources">Resources</div>
+  </div>
+  
+  <div class="module-list" id="course-outline-panel" role="tabpanel" aria-labelledby="tab-course-outline">
+    <!-- Module 1 -->
+    <div class="module-title" tabindex="0" aria-expanded="false" aria-controls="module1-content" id="module1-title" data-module="module1">
+      My Knowledge Check
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6 6l6 4-6 4V6z"/></svg>
+    </div>
+    <div class="module-content" id="module1-content" role="region" aria-labelledby="module1-title">
+      <div data-content="knowledge-check">
+        <input type="checkbox" id="m1-sub1" data-module="module1" />
+        <label for="m1-sub1">Practice questions</label>
+      </div>
+    </div>
+
+    <!-- Module 2 -->
+    <div class="module-title" tabindex="0" aria-expanded="false" aria-controls="module2-content" id="module2-title" data-module="module2">
+      Course Introduction
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6 6l6 4-6 4V6z"/></svg>
+    </div>
+    <div class="module-content" id="module2-content" role="region" aria-labelledby="module2-title">
+      <div data-content="welcome">
+        <input type="checkbox" id="m2-sub1" data-module="module2" />
+        <label for="m2-sub1">Welcome message</label>
+      </div>
+    </div>
+
+    <!-- Module 3 -->
+    <div class="module-title" tabindex="0" aria-expanded="false" aria-controls="module3-content" id="module3-title" data-module="module3">
+      Module 1: Cybersecurity Threats, Vulnerabilities, and Attacks
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6 6l6 4-6 4V6z"/></svg>
+    </div>
+    <div class="module-content" id="module3-content" role="region" aria-labelledby="module3-title">
+      <div data-content="introduction" class="active">
+        <input type="checkbox" id="m3-sub1" data-module="module3" />
+        <label for="m3-sub1">1.0 Introduction</label>
+      </div>
+      <div data-content="common-threats">
+        <input type="checkbox" id="m3-sub2" data-module="module3" />
+        <label for="m3-sub2">1.1 Common Threats</label>
+      </div>
+      <div data-content="deception">
+        <input type="checkbox" id="m3-sub3" data-module="module3" />
+        <label for="m3-sub3">1.2 Deception</label>
+      </div>
+      <div data-content="cyber-attacks">
+        <input type="checkbox" id="m3-sub4" data-module="module3" />
+        <label for="m3-sub4">1.3 Cyber Attacks</label>
+      </div>
+    </div>
+
+    <!-- Module 4 -->
+    <div class="module-title" tabindex="0" aria-expanded="false" aria-controls="module4-content" id="module4-title" data-module="module4">
+      Module 2: Securing Networks
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6 6l6 4-6 4V6z"/></svg>
+    </div>
+    <div class="module-content" id="module4-content" role="region" aria-labelledby="module4-title">
+      <div data-content="network-basics">
+        <input type="checkbox" id="m4-sub1" data-module="module4" />
+        <label for="m4-sub1">Network basics</label>
+      </div>
+      <div data-content="firewalls">
+        <input type="checkbox" id="m4-sub2" data-module="module4" />
+        <label for="m4-sub2">Firewalls</label>
+      </div>
+      <div data-content="vpns">
+        <input type="checkbox" id="m4-sub3" data-module="module4" />
+        <label for="m4-sub3">VPNs</label>
+      </div>
+    </div>
+
+    <!-- Module 5 -->
+    <div class="module-title" tabindex="0" aria-expanded="false" aria-controls="module5-content" id="module5-title" data-module="module5">
+      Module 3: Attacking the Foundation
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6 6l6 4-6 4V6z"/></svg>
+    </div>
+    <div class="module-content" id="module5-content" role="region" aria-labelledby="module5-title">
+      <div data-content="foundations">
+        <input type="checkbox" id="m5-sub1" data-module="module5" />
+        <label for="m5-sub1">Foundations of attacks</label>
+      </div>
+    </div>
+
+    <!-- Module 6 -->
+    <div class="module-title" tabindex="0" aria-expanded="false" aria-controls="module6-content" id="module6-title" data-module="module6">
+      Module 4: Attacking What We Do
+      <svg viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M6 6l6 4-6 4V6z"/></svg>
+    </div>
+    <div class="module-content" id="module6-content" role="region" aria-labelledby="module6-title">
+      <div data-content="attack-techniques">
+        <input type="checkbox" id="m6-sub1" data-module="module6" />
+        <label for="m6-sub1">Attack techniques</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="module-list resources-content" id="resources-panel" role="tabpanel" aria-labelledby="tab-resources" style="display: none;">
+    <div class="resource-item" data-resource="handbook">
+      <h4>📚 Cybersecurity Handbook</h4>
+      <p>Comprehensive guide covering all course topics</p>
+    </div>
+    <div class="resource-item" data-resource="tools">
+      <h4>🛠️ Security Tools</h4>
+      <p>List of recommended security analysis tools</p>
+    </div>
+    <div class="resource-item" data-resource="references">
+      <h4>🔗 External References</h4>
+      <p>Additional reading materials and links</p>
+    </div>
+    <div class="resource-item" data-resource="glossary">
+      <h4>📖 Glossary</h4>
+      <p>Definitions of key cybersecurity terms</p>
+    </div>
+    <div class="resource-item" data-resource="templates">
+      <h4>📋 Templates & Checklists</h4>
+      <p>Practical templates for security assessments</p>
+    </div>
+  </div>
+</div>
+
+<div class="content-area" role="main" aria-live="polite" aria-atomic="true">
+  <div class="content-header" id="content-header" tabindex="0">
+    1.0 Introduction
+  </div>
+  <div class="content-image-placeholder" aria-label="Course image">
+    <span style="position: relative; z-index: 5;">Cybersecurity Fundamentals</span>
+    <button class="action-icon" aria-label="Course Settings" onclick="showSettings()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1 1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+    </button>
+  </div>
+  
+  <div class="content-video-placeholder" onclick="playVideo()" aria-label="Video content - Click to play" title="Introduction Video">
+  </div>
+
+  <div class="content-detail" id="content-detail">
+    <div class="content-section-title">Welcome to Cybersecurity Fundamentals</div>
+    
+    <div class="content-card">
+      <h4>Course Overview</h4>
+      <p>This comprehensive course introduces you to the fundamental concepts of cybersecurity, covering threats, vulnerabilities, network security, and attack methodologies. By the end of this course, you'll have a solid understanding of how to protect digital assets and identify potential security risks.</p>
+    </div>
+
+    <p>In today's interconnected world, cybersecurity has become more critical than ever. Organizations of all sizes face constant threats from cybercriminals, state-sponsored hackers, and insider threats. This course provides you with the essential knowledge and skills needed to understand and combat these threats.</p>
+
+    <div class="content-section-title">Learning Objectives</div>
+    
+    <div class="content-card">
+      <h4>By the end of this module, you will be able to:</h4>
+      <p>• Identify common cybersecurity threats and vulnerabilities<br>
+      • Understand the fundamentals of network security<br>
+      • Recognize different types of cyber attacks<br>
+      • Implement basic security measures and best practices<br>
+      • Analyze security incidents and develop response strategies</p>
+    </div>
+
+    <div class="content-section-title">Course Structure</div>
+    
+    <table>
+      <thead>
+        <tr>
+          <th>Module</th>
+          <th>Topic</th>
+          <th>Duration</th>
+          <th>Assessment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Module 1</td>
+          <td>Threats, Vulnerabilities, and Attacks</td>
+          <td>2 hours</td>
+          <td>Quiz + Lab</td>
+        </tr>
+        <tr>
+          <td>Module 2</td>
+          <td>Securing Networks</td>
+          <td>2.5 hours</td>
+          <td>Practical Exercise</td>
+        </tr>
+        <tr>
+          <td>Module 3</td>
+          <td>Attacking the Foundation</td>
+          <td>2 hours</td>
+          <td>Case Study</td>
+        </tr>
+        <tr>
+          <td>Module 4</td>
+          <td>Attacking What We Do</td>
+          <td>2.5 hours</td>
+          <td>Final Project</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="content-section-title">Prerequisites</div>
+    <p>This course assumes basic familiarity with computer systems and networking concepts. No prior cybersecurity experience is required, making it suitable for beginners and those looking to transition into the cybersecurity field.</p>
+
+    <div class="content-card">
+      <h4>💡 Pro Tip</h4>
+      <p>Take advantage of the hands-on labs and practical exercises throughout the course. Cybersecurity is a field where practical experience is just as important as theoretical knowledge.</p>
+    </div>
+  </div>
+
+  <div class="nav-arrow" onclick="nextContent()" aria-label="Next content" title="Go to next lesson">
+    →
+  </div>
+</div>
+
+<script>
+// Course content data
+const contentData = {
+  'knowledge-check': {
+    title: 'Knowledge Check - Practice Questions',
+    hasVideo: false,
+    content: `
+      <div class="content-section-title">Practice Questions</div>
+      <div class="content-card">
+        <h4>Test Your Knowledge</h4>
+        <p>Complete these practice questions to assess your current understanding of cybersecurity concepts. This will help identify areas where you may need additional focus.</p>
+      </div>
+      <p><strong>Question 1:</strong> What is the primary purpose of a firewall?</p>
+      <p><strong>Question 2:</strong> Define what constitutes a "social engineering" attack.</p>
+      <p><strong>Question 3:</strong> List three common types of malware.</p>
+    `
+  },
+  'welcome': {
+    title: 'Course Introduction - Welcome Message',
+    hasVideo: true,
+    content: `
+      <div class="content-section-title">Welcome to Cybersecurity Fundamentals</div>
+      <div class="content-card">
+        <h4>Getting Started</h4>
+        <p>Welcome to this comprehensive cybersecurity course! We're excited to have you join us on this learning journey.</p>
+      </div>
+      <p>In this course, you'll learn about the ever-evolving landscape of cybersecurity threats and how to protect against them.</p>
+      <div class="content-card">
+        <h4>🎯 What You'll Achieve</h4>
+        <p>By completing this course, you'll gain practical skills in threat identification, network security, and incident response.</p>
+      </div>
+    `
+  },
+  'introduction': {
+    title: '1.0 Introduction',
+    hasVideo: true,
+    content: `
+      <div class="content-section-title">Welcome to Cybersecurity Fundamentals</div>
+      <div class="content-card">
+        <h4>Course Overview</h4>
+        <p>This comprehensive course introduces you to the fundamental concepts of cybersecurity, covering threats, vulnerabilities, network security, and attack methodologies.</p>
+      </div>
+      <p>In today's interconnected world, cybersecurity has become more critical than ever. Organizations face constant threats from various sources.</p>
+      <div class="content-section-title">Learning Objectives</div>
+      <div class="content-card">
+        <h4>By the end of this module, you will be able to:</h4>
+        <p>• Identify common cybersecurity threats and vulnerabilities<br>
+        • Understand network security fundamentals<br>
+        • Recognize different types of cyber attacks<br>
+        • Implement basic security measures</p>
+      </div>
+    `
+  },
+  'common-threats': {
+    title: '1.1 Common Threats',
+    hasVideo: true,
+    content: `
+      <div class="content-section-title">Understanding Common Cybersecurity Threats</div>
+      <div class="content-card">
+        <h4>Types of Threats</h4>
+        <p>Cybersecurity threats come in many forms, from malware and phishing attacks to advanced persistent threats (APTs) and insider threats.</p>
+      </div>
+      <p><strong>Malware:</strong> Malicious software designed to damage, disrupt, or gain unauthorized access to computer systems.</p>
+      <p><strong>Phishing:</strong> Fraudulent attempts to obtain sensitive information by disguising as a trustworthy entity.</p>
+      <p><strong>Ransomware:</strong> A type of malware that encrypts files and demands payment for decryption.</p>
+      <div class="content-card">
+        <h4>⚠️ Important Note</h4>
+        <p>Threat landscapes evolve rapidly. Staying informed about emerging threats is crucial for effective cybersecurity.</p>
+      </div>
+    `
+  },
+  'deception': {
+    title: '1.2 Deception',
+    hasVideo: false,
+    content: `
+      <div class="content-section-title">Deception in Cybersecurity</div>
+      <div class="content-card">
+        <h4>Social Engineering</h4>
+        <p>Social engineering exploits human psychology rather than technical vulnerabilities to gain unauthorized access.</p>
+      </div>
+      <p><strong>Common Deception Techniques:</strong></p>
+      <p>• <strong>Pretexting:</strong> Creating fabricated scenarios to engage victims</p>
+      <p>• <strong>Baiting:</strong> Offering something enticing to spark curiosity</p>
+      <p>• <strong>Quid Pro Quo:</strong> Offering services in exchange for information</p>
+      <p>• <strong>Tailgating:</strong> Following someone into a restricted area</p>
+    `
+  },
+  'cyber-attacks': {
+    title: '1.3 Cyber Attacks',
+    hasVideo: true,
+    content: `
+      <div class="content-section-title">Understanding Cyber Attacks</div>
+      <div class="content-card">
+        <h4>Attack Vectors and Methods</h4>
+        <p>Cyber attacks can target different layers of an organization's infrastructure, from networks and applications to people and processes.</p>
+      </div>
+      <p><strong>Network-Based Attacks:</strong> Target network infrastructure and protocols.</p>
+      <p><strong>Application-Based Attacks:</strong> Exploit vulnerabilities in software applications.</p>
+      <p><strong>Physical Attacks:</strong> Target physical infrastructure and devices.</p>
+      <table>
+        <thead><tr><th>Attack Type</th><th>Description</th><th>Impact</th></tr></thead>
+        <tbody>
+          <tr><td>DDoS</td><td>Distributed Denial of Service</td><td>Service disruption</td></tr>
+          <tr><td>SQL Injection</td><td>Database manipulation</td><td>Data breach</td></tr>
+          <tr><td>Man-in-the-Middle</td><td>Communication interception</td><td>Data theft</td></tr>
+        </tbody>
+      </table>
+    `
+  },
+  'network-basics': {
+    title: 'Network Basics',
+    hasVideo: true,
+    content: `
+      <div class="content-section-title">Network Security Fundamentals</div>
+      <div class="content-card">
+        <h4>Network Architecture</h4>
+        <p>Understanding network topology and architecture is essential for implementing effective security measures.</p>
+      </div>
+      <p>Networks consist of interconnected devices that communicate using standardized protocols. Security must be implemented at multiple layers.</p>
+      <p><strong>Network Layers:</strong></p>
+      <p>• Physical Layer - cables, switches, routers</p>
+      <p>• Network Layer - IP addressing and routing</p>
+      <p>• Transport Layer - TCP/UDP protocols</p>
+      <p>• Application Layer - services and applications</p>
+    `
+  },
+  'firewalls': {
+    title: 'Firewalls',
+    hasVideo: true,
+    content: `
+      <div class="content-section-title">Firewall Technology</div>
+      <div class="content-card">
+        <h4>What is a Firewall?</h4>
+        <p>A firewall is a network security system that monitors and controls incoming and outgoing network traffic based on predetermined security rules.</p>
+      </div>
+      <p><strong>Types of Firewalls:</strong></p>
+      <p>• <strong>Packet Filtering:</strong> Examines packets and blocks/allows based on rules</p>
+      <p>• <strong>Stateful Inspection:</strong> Tracks connection states and context</p>
+      <p>• <strong>Application Layer:</strong> Inspects application-specific data</p>
+      <p>• <strong>Next-Generation:</strong> Combines multiple security functions</p>
+    `
+  },
+  'vpns': {
+    title: 'VPNs (Virtual Private Networks)',
+    hasVideo: false,
+    content: `
+      <div class="content-section-title">Virtual Private Networks</div>
+      <div class="content-card">
+        <h4>VPN Technology</h4>
+        <p>VPNs create secure, encrypted connections over public networks, allowing remote access to private resources.</p>
+      </div>
+      <p><strong>VPN Benefits:</strong></p>
+      <p>• Encrypted communication channels</p>
+      <p>• Remote access to corporate networks</p>
+      <p>• Protection on public Wi-Fi</p>
+      <p>• Anonymity and privacy</p>
+      <div class="content-card">
+        <h4>🔒 Security Note</h4>
+        <p>While VPNs provide encryption, they should be part of a comprehensive security strategy, not a standalone solution.</p>
+      </div>
+    `
+  }
+};
+
+// Initialize the application
+document.addEventListener('DOMContentLoaded', function() {
+  initializeApp();
+});
+
+function initializeApp() {
+  // Set up tab switching
+  setupTabs();
+  
+  // Set up module interactions
+  setupModules();
+  
+  // Set up content interactions
+  setupContentItems();
+  
+  // Set up progress tracking
+  setupProgressTracking();
+  
+  // Load initial content
+  loadContent('introduction');
+}
+
+// Tab switching functionality
+function setupTabs() {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', function() {
+      switchTab(this.id);
+    });
+    
+    tab.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        switchTab(this.id);
+      }
+    });
+  });
+}
+
+function switchTab(tabId) {
+  // Remove active class from all tabs
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.classList.remove('active');
+    tab.setAttribute('aria-selected', 'false');
+    tab.setAttribute('tabindex', '-1');
+  });
+  
+  // Hide all panels
+  document.querySelectorAll('.module-list').forEach(panel => {
+    panel.style.display = 'none';
+    panel.setAttribute('hidden', '');
+  });
+  
+  // Activate clicked tab
+  const activeTab = document.getElementById(tabId);
+  activeTab.classList.add('active');
+  activeTab.setAttribute('aria-selected', 'true');
+  activeTab.setAttribute('tabindex', '0');
+  
+  // Show corresponding panel
+  const panelId = activeTab.getAttribute('aria-controls');
+  const activePanel = document.getElementById(panelId);
+  activePanel.style.display = 'block';
+  activePanel.removeAttribute('hidden');
+}
+
+// Module expand/collapse functionality
+function setupModules() {
+  const moduleTitles = document.querySelectorAll('.module-title');
+  moduleTitles.forEach(title => {
+    title.addEventListener('click', function() {
+      toggleModule(this);
+    });
+    
+    title.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleModule(this);
+      }
+    });
+  });
+}
+
+function toggleModule(moduleTitle) {
+  const moduleContent = moduleTitle.nextElementSibling;
+  const isExpanded = moduleTitle.classList.contains('expanded');
+  
+  if (isExpanded) {
+    // Collapse
+    moduleTitle.classList.remove('expanded');
+    moduleTitle.setAttribute('aria-expanded', 'false');
+    moduleContent.classList.remove('open');
+    moduleContent.setAttribute('hidden', '');
+  } else {
+    // Expand
+    moduleTitle.classList.add('expanded');
+    moduleTitle.setAttribute('aria-expanded', 'true');
+    moduleContent.classList.add('open');
+    moduleContent.removeAttribute('hidden');
+  }
+}
+
+// Content item interactions
+function setupContentItems() {
+  const contentItems = document.querySelectorAll('.module-content div[data-content]');
+  contentItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const contentKey = this.getAttribute('data-content');
+      if (contentKey && contentData[contentKey]) {
+        selectContentItem(this);
+        loadContent(contentKey);
+      }
+    });
+  });
+  
+  // Resource items
+  const resourceItems = document.querySelectorAll('.resource-item');
+  resourceItems.forEach(item => {
+    item.addEventListener('click', function() {
+      const resourceKey = this.getAttribute('data-resource');
+      loadResource(resourceKey);
+    });
+  });
+}
+
+function selectContentItem(item) {
+  // Remove active class from all content items
+  document.querySelectorAll('.module-content div').forEach(div => {
+    div.classList.remove('active');
+  });
+  
+  // Add active class to clicked item
+  item.classList.add('active');
+}
+
+// Progress tracking
+function setupProgressTracking() {
+  const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  checkboxes.forEach(checkbox => {
+    checkbox.addEventListener('change', function() {
+      updateProgress();
+      
+      if (this.checked) {
+        // Mark module as completed if all items are checked
+        checkModuleCompletion(this.getAttribute('data-module'));
+      }
+    });
+  });
+}
+
+function updateProgress() {
+  const totalCheckboxes = document.querySelectorAll('input[type="checkbox"]').length;
+  const checkedBoxes = document.querySelectorAll('input[type="checkbox"]:checked').length;
+  const progressPercentage = Math.round((checkedBoxes / totalCheckboxes) * 100);
+  
+  const progressBar = document.getElementById('progress-bar');
+  const progressText = document.getElementById('progress-text');
+  
+  progressBar.style.width = progressPercentage + '%';
+  progressText.textContent = `Progress: ${progressPercentage}%`;
+}
+
+function checkModuleCompletion(moduleId) {
+  const moduleCheckboxes = document.querySelectorAll(`input[data-module="${moduleId}"]`);
+  const checkedInModule = document.querySelectorAll(`input[data-module="${moduleId}"]:checked`);
+  
+  if (moduleCheckboxes.length === checkedInModule.length && moduleCheckboxes.length > 0) {
+    const moduleTitle = document.querySelector(`[data-module="${moduleId}"]`);
+    if (moduleTitle && moduleTitle.classList.contains('module-title')) {
+      moduleTitle.classList.add('completed');
+    }
+  }
+}
+
+// Content loading
+function loadContent(contentKey) {
+  const data = contentData[contentKey];
+  if (!data) return;
+  
+  // Update header
+  document.getElementById('content-header').textContent = data.title;
+  
+  // Update image placeholder
+  const imagePlaceholder = document.querySelector('.content-image-placeholder span');
+  imagePlaceholder.textContent = data.title;
+  
+  // Show/hide video based on content
+  const videoPlaceholder = document.querySelector('.content-video-placeholder');
+  if (data.hasVideo) {
+    videoPlaceholder.style.display = 'flex';
+  } else {
+    videoPlaceholder.style.display = 'none';
+  }
+  
+  // Update content detail
+  document.getElementById('content-detail').innerHTML = data.content;
+}
+
+function loadResource(resourceKey) {
+  const resourceContent = {
+    'handbook': {
+      title: 'Cybersecurity Handbook',
+      content: `
+        <div class="content-section-title">Cybersecurity Handbook</div>
+        <div class="content-card">
+          <h4>📚 Comprehensive Reference Guide</h4>
+          <p>This handbook contains detailed information about all cybersecurity topics covered in the course, including best practices, case studies, and implementation guidelines.</p>
+        </div>
+        <p><strong>Contents Include:</strong></p>
+        <p>• Threat assessment frameworks</p>
+        <p>• Security policy templates</p>
+        <p>• Incident response procedures</p>
+        <p>• Risk management strategies</p>
+      `
+    },
+    'tools': {
+      title: 'Security Tools',
+      content: `
+        <div class="content-section-title">Recommended Security Tools</div>
+        <div class="content-card">
+          <h4>🛠️ Essential Security Tools</h4>
+          <p>A curated list of industry-standard tools for vulnerability assessment, network monitoring, and incident response.</p>
+        </div>
+        <table>
+          <thead><tr><th>Tool</th><th>Category</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Nmap</td><td>Network Scanner</td><td>Network discovery and security auditing</td></tr>
+            <tr><td>Wireshark</td><td>Packet Analyzer</td><td>Network protocol analysis</td></tr>
+            <tr><td>Metasploit</td><td>Penetration Testing</td><td>Security testing framework</td></tr>
+            <tr><td>OWASP ZAP</td><td>Web App Security</td><td>Web application security testing</td></tr>
+          </tbody>
+        </table>
+      `
+    },
+    'references': {
+      title: 'External References',
+      content: `
+        <div class="content-section-title">Additional Reading Materials</div>
+        <div class="content-card">
+          <h4>🔗 Useful Resources</h4>
+          <p>External links and references to enhance your cybersecurity knowledge and stay updated with the latest trends.</p>
+        </div>
+        <p><strong>Industry Standards:</strong></p>
+        <p>• NIST Cybersecurity Framework</p>
+        <p>• ISO 27001 Information Security</p>
+        <p>• OWASP Top 10 Security Risks</p>
+        <p>• CIS Controls</p>
+        <div class="content-card">
+          <h4>💡 Stay Updated</h4>
+          <p>Cybersecurity is a rapidly evolving field. Follow industry blogs, attend conferences, and participate in professional communities.</p>
+        </div>
+      `
+    },
+    'glossary': {
+      title: 'Glossary',
+      content: `
+        <div class="content-section-title">Cybersecurity Glossary</div>
+        <div class="content-card">
+          <h4>📖 Key Terms and Definitions</h4>
+          <p>Understanding terminology is crucial in cybersecurity. This glossary provides definitions for key terms used throughout the course.</p>
+        </div>
+        <p><strong>APT</strong> - Advanced Persistent Threat: A prolonged and targeted cyberattack</p>
+        <p><strong>CIA Triad</strong> - Confidentiality, Integrity, and Availability: Core principles of information security</p>
+        <p><strong>Zero-Day</strong> - A previously unknown vulnerability that has no available patch</p>
+        <p><strong>SOC</strong> - Security Operations Center: Centralized unit for security monitoring</p>
+      `
+    },
+    'templates': {
+      title: 'Templates & Checklists',
+      content: `
+        <div class="content-section-title">Practical Templates and Checklists</div>
+        <div class="content-card">
+          <h4>📋 Ready-to-Use Resources</h4>
+          <p>Download and customize these templates for your organization's security assessments and procedures.</p>
+        </div>
+        <p><strong>Available Templates:</strong></p>
+        <p>• Security Assessment Checklist</p>
+        <p>• Incident Response Plan Template</p>
+        <p>• Risk Assessment Matrix</p>
+        <p>• Security Policy Framework</p>
+        <p>• Employee Security Training Checklist</p>
+        <div class="content-card">
+          <h4>📝 Customization Note</h4>
+          <p>These templates should be adapted to fit your organization's specific needs and compliance requirements.</p>
+        </div>
+      `
+    }
+  };
+  
+  const data = resourceContent[resourceKey];
+  if (data) {
+    document.getElementById('content-header').textContent = data.title;
+    document.querySelector('.content-image-placeholder span').textContent = data.title;
+    document.querySelector('.content-video-placeholder').style.display = 'none';
+    document.getElementById('content-detail').innerHTML = data.content;
+  }
+}
+
+// Video and navigation functions
+function playVideo() {
+  alert('Video player would open here. In a real application, this would integrate with a video platform like YouTube, Vimeo, or a custom video player.');
+}
+
+function showSettings() {
+  alert('Settings panel would open here. This could include options for playback speed, captions, quality settings, etc.');
+}
+
+function nextContent() {
+  alert('Navigation to next content item. In a real application, this would automatically advance to the next lesson or module.');
+}
+
+// Keyboard navigation
+document.addEventListener('keydown', function(e) {
+  // ESC key to close expanded modules
+  if (e.key === 'Escape') {
+    const expandedModules = document.querySelectorAll('.module-title.expanded');
+    expandedModules.forEach(module => {
+      toggleModule(module);
+    });
+  }
+  
+  // Arrow keys for navigation
+  if (e.key === 'ArrowRight' && e.ctrlKey) {
+    nextContent();
+  }
+});
+</script>
+</body>
+</html>
