@@ -40,7 +40,7 @@ const contentData = {
          font-size: 16px; 
          font-weight: bold;
          margin: 20px 0;" onclick="window.open('https://www.minimax.io/', '_blank')">
-  Kunjungi Minimaxi.io
+  Kunjungi Minimax.io
 </button>
         </div><br>
        <div class="content-section-title">Sejarah dan Perkembangan Deepfake</div>
@@ -975,5 +975,6 @@ document.addEventListener('keydown', function(e) {
   }
 
 });
+
 
 
