@@ -94,7 +94,7 @@ const contentData = {
       <div class="content-card">
         <h4>Step by Step Tutorial</h4>
         <p>1. Identifikasi Target yang ingin menjadi sasaran penipuan; usahakan target adalah orang yang kurang mahir menggunakan perangkat, orang yang lebih tua, atau orang yang memiliki pengaruh yang signifikan.</p>
-        <img src="/image/target.png" alt="target" width="200" padding="10px">
+        <img src="/Image/target.png" alt="target" width="200" padding="10px">
         <br>
         <p>2. Cari informasi tentang target, termasuk nomor telepon, media sosial, foto, dan suara wajah, serta kerabat dekat.</p>
         <br>
@@ -159,7 +159,7 @@ const contentData = {
       <p> Terdiri dari :<br>1. Membangun Sikap Skeptis Sehat<br>2. Verifikasi Ganda (Double Verification)<br>3. Amankan Jejak Digital (Digital Footprint Protection)<br>4. Literasi Digital Pribadi (Digital Literacy for Defense)</p></div>
       <div class="content-card">
         <h3>Membangun Sikap Skeptis Sehat</h3>
-        <img src="image/skeptik.jpg" alt="skeptik" width="200">
+        <img src="Image/skeptik.jpg" alt="skeptik" width="200">
         <p>Sikap skeptis sehat adalah kemampuan untuk tidak langsung percaya pada setiap informasi yang kita lihat atau dengar, terutama dalam bentuk video dan audio yang terlihat meyakinkan. Di era deepfake, sikap ini menjadi pertahanan pertama yang paling penting, karena teknologi bisa membuat sesuatu yang palsu tampak sangat nyata.</p><br>
         <h4>Mengapa Sikap Skeptis Penting?</h4>
         <p>• Deepfake dirancang untuk menipu mata dan telinga kita. Semakin canggih teknologinya, semakin sulit membedakan mana yang asli dan palsu hanya dengan melihat sekilas.<br>
@@ -185,7 +185,7 @@ const contentData = {
 
       <div class="content-card">
         <h3>Verifikasi Ganda (Double Verification)</h3>
-        <img src="image/verifikasi.jpg" alt="verif" width="200">
+        <img src="Image/verifikasi.jpg" alt="verif" width="200">
         <p>Jika sikap skeptis sehat adalah rem pertama agar kita tidak langsung percaya, maka verifikasi ganda adalah rem kedua untuk memastikan kebenaran informasi sebelum bertindak. Prinsipnya sederhana: jangan pernah membuat keputusan penting hanya berdasarkan satu sumber, apalagi berupa video atau suara yang bisa dipalsukan.</p><br>
         <h4>Mengapa Perlu Verifikasi Ganda?</h4>
         <p>• Deepfake tampak sangat meyakinkan. Kadang mata dan telinga kita tidak cukup untuk mendeteksi kejanggalan.<br>
@@ -205,7 +205,7 @@ const contentData = {
      <br>
       <div class="content-card">
         <h3>Amankan Jejak Digital (Digital Footprint Protection)</h3>
-        <img src="image/foot.png" alt="foot" width="200">
+        <img src="Image/foot.png" alt="foot" width="200">
         <p>Jejak digital adalah semua data yang kita tinggalkan di internet: foto, video, rekaman suara, komentar, bahkan metadata yang sering tidak kita sadari. Semakin banyak jejak digital yang tersebar, semakin mudah bagi pembuat deepfake untuk memanfaatkan data itu sebagai “bahan baku” untuk memalsukan kita.<br>Deepfake tidak bisa dibuat dari “kekosongan.” Ia butuh data pelatihan berupa foto wajah, rekaman suara, atau video target. Artinya, semakin banyak data kita yang tersedia, semakin mudah kita jadi korban.</p><br>
         <h4>Kenapa Jejak Digital Perlu Diamankan?</h4>
         <p>1. Bahan Deepfake = Foto/Video Publik.<br>Banyak deepfake dibuat dari foto profil media sosial, video TikTok, atau rekaman suara dari podcast.<br>
@@ -227,7 +227,7 @@ const contentData = {
      <br>
         <div class="content-card">
         <h3>Literasi Digital Pribadi (Digital Literacy for Defense)</h3>
-        <img src="image/literasi.jpg" alt="literasi" width="200">
+        <img src="Image/literasi.jpg" alt="literasi" width="200">
         <p>Literasi digital bukan hanya soal bisa menggunakan gadget atau aplikasi, tapi juga kemampuan memahami, menganalisis, dan mengevaluasi informasi digital secara kritis.
 <br>Dalam konteks deepfake, literasi digital adalah “tameng mental” yang membuat kita tidak mudah tertipu walau kontennya terlihat sangat meyakinkan.</p><br>
         <h4>Kenapa Literasi Digital Penting untuk Lawan Deepfake?</h4>
@@ -256,7 +256,7 @@ const contentData = {
       <div class="content-section-title">Pertahanan Organisasi (Institusi/Kampus/Perusahaan)</div>
       <div class="content-card">
         <h3>Kebijakan & SOP (Standar Operasional Prosedur)</h3>
-         <img src="image/SOP.jpg" alt="SOP" width="200">
+         <img src="Image/SOP.jpg" alt="SOP" width="200">
         <h4>Kenapa SOP Penting?</h4>
         <p>Deepfake sering digunakan untuk social engineering: meniru pimpinan untuk memerintahkan bawahan melakukan sesuatu. Jika organisasi tidak punya aturan baku, karyawan bisa panik dan langsung menuruti perintah palsu.</p><br>
         <h4>Langkah-langkah yang Bisa Dibuat Organisasi:</h4>
@@ -268,7 +268,7 @@ const contentData = {
       <br>
       <div class="content-card">
         <h3>Pelatihan Karyawan & Edukasi</h3>
-         <img src="image/training.jpg" alt="training" width="200">
+         <img src="Image/training.jpg" alt="training" width="200">
         <h4>Kenapa Edukasi Penting?</h4>
         <p>Sebagus apa pun SOP, kalau karyawan tidak paham tentang ancaman deepfake, tetap akan gagal. Edukasi adalah benteng utama agar semua anggota organisasi melek ancaman digital.</p><br>
         <h4>Program yang Bisa Diterapkan:</h4>
@@ -280,7 +280,7 @@ const contentData = {
     <br>
       <div class="content-card">
         <h3>Teknologi & Sistem Keamanan</h3>
-            <img src="image/keamanan.jpg" alt="SOP" width="200">
+            <img src="Image/keamanan.jpg" alt="SOP" width="200">
         <h4>Kenapa Teknologi Dibutuhkan?</h4>
         <p>Deepfake berkembang cepat, sehingga manusia sering kesulitan mendeteksi. Dengan bantuan teknologi, organisasi bisa melakukan screening otomatis.</p><br>
         <h4>angkah Teknis yang Bisa Dilakukan:</h4>
@@ -911,13 +911,13 @@ function loadContent(contentKey, videoSource = null) {
   const header = document.getElementById('content-header');
   if (header) header.textContent = data.title;
   
-  // Update image placeholder
-  const imagePlaceholder = document.querySelector('.content-image-placeholder span');
-  if (imagePlaceholder) imagePlaceholder.textContent = data.title;
+  // Update Image placeholder
+  const ImagePlaceholder = document.querySelector('.content-Image-placeholder span');
+  if (ImagePlaceholder) ImagePlaceholder.textContent = data.title;
   
   // Update video container visibility and source
   const videoContainer = document.getElementById('video-container');
-  const imageContainer = document.getElementById('image-container');
+  const ImageContainer = document.getElementById('Image-container');
   
   if (videoContainer) {
     if (data.hasVideo) {
@@ -935,8 +935,8 @@ function loadContent(contentKey, videoSource = null) {
   }
   
   // Image container is hidden by default
-  if (imageContainer) {
-    imageContainer.style.display = 'none';
+  if (ImageContainer) {
+    ImageContainer.style.display = 'none';
   }
   
   // Update content detail
@@ -948,15 +948,15 @@ function loadResource(resourceKey) {
   const data = resourceData[resourceKey];
   if (data) {
     const header = document.getElementById('content-header');
-    const imagePlaceholder = document.querySelector('.content-image-placeholder span');
+    const ImagePlaceholder = document.querySelector('.content-Image-placeholder span');
     const videoContainer = document.getElementById('video-container');
-    const imageContainer = document.getElementById('image-container');
+    const ImageContainer = document.getElementById('Image-container');
     const contentDetail = document.getElementById('content-detail');
     
     if (header) header.textContent = data.title;
-    if (imagePlaceholder) imagePlaceholder.textContent = data.title;
+    if (ImagePlaceholder) ImagePlaceholder.textContent = data.title;
     if (videoContainer) videoContainer.style.display = 'none';
-    if (imageContainer) imageContainer.style.display = 'none';
+    if (ImageContainer) ImageContainer.style.display = 'none';
     if (contentDetail) contentDetail.innerHTML = data.content;
   }
 }
@@ -977,3 +977,4 @@ document.addEventListener('keydown', function(e) {
   }
 
 });
+
