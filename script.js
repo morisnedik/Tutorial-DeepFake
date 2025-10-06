@@ -117,7 +117,7 @@ const contentData = {
         <p>5. Untuk mengurangi kesalahan pada video yang dibuat, masukkan prompt yang jelas dan gunakan kata-kata baku. Sebagai contoh, "Buatlah video berdasarkan foto yang saya berikan, lalu buatlah dia mengatakan narasi berikut menggunakan bahasa indonesia, "Saya Aril, dan menurut saya kebijakan presiden adalah kebijakan yang bodoh."</p>
         <br>
       <div style=" margin: 0 0 0 200px;">
-        <video width="720" height="300"controls src="videos/Deepfake.mp4"></video>
+        <video width="720" height="300"controls src="Video/Deepfake.mp4"></video>
       </div>
         <br>
         <p>6. Setelah video dibuat, gunakan sampel suara asli target yang didapat dari video atau voice note target untuk dimasukkan ke dalam AI Minimax.io untuk menghasilkan cloning suara target yang realistis.</p>
@@ -139,13 +139,13 @@ const contentData = {
         <p>8. Klik pada Voice Library, dan gunakan voice cloning yang sudah kita generate tadi. Masukkan narasi yang sama dengan narasi pada proses pembuatan video deepfake dan generatelah beberapa Voice clone</p>
         <br>
         <div style=" margin: 0 0 0 200px;">
-        <video width="720" height="300" controls src="videos/VoiceClone.mp4"></video>
+        <video width="720" height="300" controls src="Video/Voiceclone.mp4"></video>
         </div><br>
         <p>9. Setelah video dan voice cloning berhasil di generate, kemudian gabungkan dan poles video dan voice clone yang tadi menggunakan software editing (CapCut, Adobe Premiere Pro, Filmora, dsb).</p>
         <br>
         <p>10. Lalu sebarkan luaskan video yang sudah kita hasilkan tadi ke social media, maupun ke grup-grup untuk menyerang pribadi target kita.</p>
         <br><div style=" margin: 0 0 0 200px;">
-        <video width="720" height="300" controls src="videos/Finishing.mp4"></video>
+        <video width="720" height="300" controls src="Video/Finishing.mp4"></video>
 </div>
         </a>
     `
@@ -975,6 +975,7 @@ document.addEventListener('keydown', function(e) {
   }
 
 });
+
 
 
 
