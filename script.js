@@ -102,7 +102,6 @@ const contentData = {
         <br>
         <p>4. Dengan menggunakan AI Google Veo3 di Google Gemini, data berupa foto dapat diubah menjadi video yang cukup realistis. Untuk melakukan ini, pilih opsi Video pada tombol alat Google Gemini, lalu masukkan satu foto dengan proporsi yang cukup untuk dapat dibuat sebagai video Deepfake.</p>
         
-        </button>
           <button style="background-color: #2563eb; 
           color: white; 
           padding: 10px 20px; 
@@ -111,8 +110,8 @@ const contentData = {
           cursor: pointer; 
           font-size: 16px; 
           font-weight: bold;
-          margin: 20px 0;" onclick="window.open(''https://gemini.google.com/', '_blank')">
-          Kunjungi Google Veo3 AI
+          margin: 20px 0;" onclick="window.open('https://gemini.google.com/', '_blank')">
+          Kunjungi Google Veo 3
         </button>
 
         <p>5. Untuk mengurangi kesalahan pada video yang dibuat, masukkan prompt yang jelas dan gunakan kata-kata baku. Sebagai contoh, "Buatlah video berdasarkan foto yang saya berikan, lalu buatlah dia mengatakan narasi berikut menggunakan bahasa indonesia, "Saya Aril, dan menurut saya kebijakan presiden adalah kebijakan yang bodoh."</p>
@@ -123,7 +122,6 @@ const contentData = {
         <br>
         <p>6. Setelah video dibuat, gunakan sampel suara asli target yang didapat dari video atau voice note target untuk dimasukkan ke dalam AI Minimax.io untuk menghasilkan cloning suara target yang realistis.</p>
         
-       </button>
           <button style="background-color: #2563eb; 
           color: white; 
           padding: 10px 20px; 
@@ -977,4 +975,5 @@ document.addEventListener('keydown', function(e) {
   }
 
 });
+
 
