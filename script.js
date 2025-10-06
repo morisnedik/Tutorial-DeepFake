@@ -94,7 +94,7 @@ const contentData = {
       <div class="content-card">
         <h4>Step by Step Tutorial</h4>
         <p>1. Identifikasi Target yang ingin menjadi sasaran penipuan; usahakan target adalah orang yang kurang mahir menggunakan perangkat, orang yang lebih tua, atau orang yang memiliki pengaruh yang signifikan.</p>
-        <img src="image/target.png" alt="target" width="200" padding="10px">
+        <img src="/image/target.png" alt="target" width="200" padding="10px">
         <br>
         <p>2. Cari informasi tentang target, termasuk nomor telepon, media sosial, foto, dan suara wajah, serta kerabat dekat.</p>
         <br>
@@ -975,4 +975,5 @@ document.addEventListener('keydown', function(e) {
       toggleModule(module);
     });
   }
+
 });
