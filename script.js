@@ -12,6 +12,16 @@ const contentData = {
       Dengan model generatif seperti Veo 3 , sistem mampu membuat video manusia yang tampak alami — mulai dari ekspresi wajah, pergerakan bibir, hingga nada suara. Di sisi lain, platform MiniMax.io memungkinkan seseorang untuk meniru suara asli hanya dari potongan rekaman pendek.<br>
       Deepfake bukan lagi sekadar eksperimen sains — kini menjadi fenomena sosial, budaya, dan keamanan digital yang harus dipahami bersama.</p>
     </div><br>
+    
+    <div class="content-section-title">Tujuan Pembelajaran Website</div>
+      <div class="content-card">
+       <p>Website interaktif ini dirancang agar pengguna dapat:<br>
+       1. Memahami konsep dasar dan teknologi di balik deepfake.<br>
+       2.	Melihat bagaimana deepfake dapat “menyerang” kepercayaan publik (How to Attack).<br>
+       3.	Mempelajari strategi dan teknologi untuk mendeteksi serta mencegah deepfake (How to Defend).<br>
+       4.	Melakukan simulasi aman untuk memahami proses dan dampaknya secara langsung (Hands On).</p>
+        </div><br>
+        
       <div class="content-section-title">Teknologi yang Digunakan (Studi Kasus)</div>
       <div class="content-card">
         <h4>Google Veo 3</h4>
@@ -65,15 +75,6 @@ const contentData = {
 </p>
       </div><br>
 
-      <div class="content-section-title">Tujuan Pembelajaran Website</div>
-      <div class="content-card">
-       <p>Website interaktif ini dirancang agar pengguna dapat:<br>
-       1. Memahami konsep dasar dan teknologi di balik deepfake.<br>
-       2.	Melihat bagaimana deepfake dapat “menyerang” kepercayaan publik (How to Attack).<br>
-       3.	Mempelajari strategi dan teknologi untuk mendeteksi serta mencegah deepfake (How to Defend).<br>
-       4.	Melakukan simulasi aman untuk memahami proses dan dampaknya secara langsung (Hands On).</p>
-        </div><br>
-
  <div class="content-card">
  <h4>Etika Penggunaan</h4>
        <p>Sebelum melangkah ke tahap selanjutnya, penting untuk diingat:<br>
@@ -117,7 +118,7 @@ const contentData = {
         <p>5. Untuk mengurangi kesalahan pada video yang dibuat, masukkan prompt yang jelas dan gunakan kata-kata baku. Sebagai contoh, "Buatlah video berdasarkan foto yang saya berikan, lalu buatlah dia mengatakan narasi berikut menggunakan bahasa indonesia, "Saya Aril, dan menurut saya kebijakan presiden adalah kebijakan yang bodoh."</p>
         <br>
       <div style=" margin: 0 0 0 200px;">
-        <video width="720" height="300"controls src="Video/Deepfake.mp4"></video>
+        <video width="720" height="300"controls muted src="Video/Deepfake.mp4"></video>
       </div>
         <br>
         <p>6. Setelah video dibuat, gunakan sampel suara asli target yang didapat dari video atau voice note target untuk dimasukkan ke dalam AI Minimax.io untuk menghasilkan cloning suara target yang realistis.</p>
@@ -975,6 +976,7 @@ document.addEventListener('keydown', function(e) {
   }
 
 });
+
 
 
 
