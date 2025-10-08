@@ -118,7 +118,7 @@ const contentData = {
         <p>5. Untuk mengurangi kesalahan pada video yang dibuat, masukkan prompt yang jelas dan gunakan kata-kata baku. Sebagai contoh, "Buatlah video berdasarkan foto yang saya berikan, lalu buatlah dia mengatakan narasi berikut menggunakan bahasa indonesia, "Saya Aril, dan menurut saya kebijakan presiden adalah kebijakan yang bodoh."</p>
         <br>
       <div style=" margin: 0 0 0 200px;">
-        <video width="720" height="300"controls muted src="Video/Deepfake.mp4"></video>
+        <video width="720" height="300"controls src="Video/Deepfake.mp4"></video>
       </div>
         <br>
         <p>6. Setelah video dibuat, gunakan sampel suara asli target yang didapat dari video atau voice note target untuk dimasukkan ke dalam AI Minimax.io untuk menghasilkan cloning suara target yang realistis.</p>
@@ -384,113 +384,37 @@ const contentData = {
            Teknologi yang Dipakai <br>
              • Deepfake video (Veo3): memakai foto Baim dari Sosial Media, lalu buat menjadi video dengan narasi promosi palsu. <br>
              • Voice cloning (Minimax.io): meniru suara khas Baim dari rekaman publik (podcast, vlog).
-
-           
            </p>
-      </div>
-      
+           </div>
+
       <div class="content-card">
         <h4>Latihan 2 : “Voice Note Baim Wong” </h4>
         <p> Buat Voice Note Palsu dengan suara mirip Baim Wong: “Halo Raka, ini Baim ya. Selamat ya, kamu pemenang giveaway-nya. Admin aku udah chat kamu, bantu ya prosesnya biar cepat. Setelah kamu transfer, nanti hadiahnya langsung dikirim.”<br>
             <br>
            Teknologi yang Dipakai <br>
              • Voice cloning (Minimax.io): meniru suara khas Baim dari rekaman publik (podcast, vlog).
-           </p>
-      </div>
+   </p>
+       </div>
+   <a href="Resource/Latihan.zip" 
+   download 
+   style="background-color: #2563eb; 
+          color: white; 
+          padding: 10px 20px; 
+          border: none; 
+          border-radius: 6px; 
+          cursor: pointer; 
+          font-size: 16px; 
+          font-weight: bold; 
+          text-decoration: none; 
+          display: inline-block; 
+          margin: 20px 0;">
+  Download Resource Latihan
+</a>
+      
     `
   }
 };
 
-// Resource content data
-const resourceData = {
-  'handbook': {
-    title: 'Tools Deepfake',
-    content: `
-      <div class="content-section-title">Daftar Tools</div>
-      <div class="content-card">
-        <h4>Google Veo 3</h4>
-        <p>Google Veo 3 adalah generator video berbasis kecerdasan buatan (AI) yang dapat mengubah deskripsi teks menjadi video berkualitas tinggi, lengkap dengan suara, efek, dan gaya sinematik, sehingga memudahkan kreator untuk membuat konten tanpa perlu keahlian editing video yang ekstensif. Model AI ini mampu menghasilkan video dengan resolusi hingga 1080p atau lebih, dan dapat memahami perintah teks yang kompleks untuk mengontrol elemen visual dan narasi secara mendalam</p>
-      <button style="background-color: #2563eb; 
-         color: white; 
-         padding: 10px 20px; 
-         border: none; 
-         border-radius: 6px; 
-         cursor: pointer; 
-         font-size: 16px; 
-         font-weight: bold;
-         margin: 20px 0;" onclick="window.open('https://gemini.google.com/', '_blank')">
-  Kunjungi Google Veo 3
-</button>
-        </div>
-       <div class="content-card">
-        <h4>Minimax.io</h4>
-        <p>Minimax.io adalah situs web resmi dari perusahaan MiniMax, sebuah perusahaan kecerdasan buatan (AI) terkemuka yang berbasis di Shanghai, Tiongkok. Dalam modul ini web ini digunakan sebagaib voice clone.</p>
-     <button style="background-color: #2563eb; 
-         color: white; 
-         padding: 10px 20px; 
-         border: none; 
-         border-radius: 6px; 
-         cursor: pointer; 
-         font-size: 16px; 
-         font-weight: bold;
-         margin: 20px 0;" onclick="window.open('https://www.minimax.io/', '_blank')">
-  Kunjungi Minimaxi.io
-</button>
-      
-    `
-  },
-  'tools': {
-    title: 'Detection Tools',
-    content: `
-      <div class="content-section-title">Tools Deteksi yang Direkomendasikan</div>
-      <div class="content-card">
-        <h4>🛠️ Essential Detection Tools</h4>
-        <p>Daftar tools standar industri untuk penilaian kerentanan, monitoring jaringan, dan respons insiden khusus deteksi manipulasi media.</p>
-      </div>
-      <table>
-        <thead><tr><th>Tool</th><th>Kategori</th><th>Tujuan</th></tr></thead>
-        <tbody>
-          <tr><td>DeeperForensics</td><td>DeepFake Detection</td><td>Deteksi video manipulasi</td></tr>
-          <tr><td>FotoForensics</td><td>Image Analysis</td><td>Analisis manipulasi gambar</td></tr>
-          <tr><td>Truepic</td><td>Content Verification</td><td>Verifikasi keaslian konten</td></tr>
-          <tr><td>Microsoft Authenticator</td><td>Video Verification</td><td>Autentikasi video</td></tr>
-        </tbody>
-      </table>
-    `
-  },
-  'references': {
-    title: 'Referensi Eksternal',
-    content: `
-      <div class="content-section-title">Materi Bacaan Tambahan</div>
-      <div class="content-card">
-        <h4>🔗 Sumber Daya Berguna</h4>
-        <p>Link eksternal dan referensi untuk meningkatkan pengetahuan cybersecurity dan tetap update dengan tren terbaru dalam deteksi manipulasi media.</p>
-      </div>
-      <p><strong>Standar Industri:</strong></p>
-      <p>• NIST AI Risk Management Framework<br>
-         • IEEE Standards untuk Media Forensics<br>
-         • OWASP AI Security Guidelines<br>
-         • ISO/IEC 23053 Framework</p>
-      <div class="content-card">
-        <h4>💡 Stay Updated</h4>
-        <p>Bidang deteksi manipulasi media berkembang pesat. Ikuti blog industri, hadiri konferensi, dan berpartisipasi dalam komunitas profesional.</p>
-      </div>
-    `
-  },
-  'glossary': {
-    title: 'Glosarium',
-    content: `
-      <div class="content-section-title">Glosarium Cybersecurity & AI</div>
-      <div class="content-card">
-        <h4>📖 Istilah dan Definisi Kunci</h4>
-        <p>Memahami terminologi sangat penting dalam cybersecurity dan AI. Glosarium ini menyediakan definisi untuk istilah kunci yang digunakan sepanjang kursus.</p>
-      </div>
-      <p><strong>DeepFake</strong> - Media sintetis yang dibuat menggunakan deep learning untuk mengganti wajah atau suara</p>
-      <p><strong>Voice Cloning</strong> - Teknologi untuk mereplikasi suara seseorang menggunakan AI</p>
-      <p><strong>Forensik Digital</strong> - Proses mengidentifikasi, mengekstrak, dan menganalisis bukti digital</p>
-    `
-  }
-};
 
 // Video state management
 let isVideoLoaded = false;
@@ -976,8 +900,3 @@ document.addEventListener('keydown', function(e) {
   }
 
 });
-
-
-
-
-
