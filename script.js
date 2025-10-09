@@ -192,7 +192,7 @@ const contentData = {
            • Verifikasi ganda menutup celah “reaksi cepat.” Banyak penipuan berhasil karena korban merasa harus segera menuruti permintaan.</p><br>
         <h4>Bentuk-Bentuk Verifikasi Ganda</h4>
         <p>1. Melalui Jalur Komunikasi Berbeda<br>Kalau dapat instruksi lewat video call, konfirmasi ulang lewat telepon resmi atau email. Jangan gunakan jalur yang sama, karena penyerang bisa sudah menguasai kanal itu.<br>
-        2. Melalui Pihak Kedua (Two-Person Rule)<br>ntuk keputusan penting, minta persetujuan lebih dari satu orang. Contoh: transaksi finansial besar harus disetujui minimal oleh dua pejabat.<br>
+        2. Melalui Pihak Kedua (Two-Person Rule)<br>Untuk keputusan penting, minta persetujuan lebih dari satu orang. Contoh: transaksi finansial besar harus disetujui minimal oleh dua pejabat.<br>
         3. Dengan Dokumen Pendukung<br>Jangan hanya percaya suara/video. Minta bukti tertulis atau dokumen resmi yang bisa dilacak asal-usulnya. Periksa apakah dokumen menggunakan tanda tangan digital atau stempel resmi.<br>
         4. Gunakan “Kode Rahasia” atau Verifikasi Manual<br>Di beberapa organisasi, dibuat kode khusus yang hanya diketahui orang dalam. Jika ada instruksi mendesak, penerima bisa meminta pengirim menyebutkan kode itu untuk memastikan keaslian.</p><br>
         <h4>Kebiasaan yang Bisa Dibangun</h4>
@@ -900,4 +900,5 @@ document.addEventListener('keydown', function(e) {
   }
 
 });
+
 
