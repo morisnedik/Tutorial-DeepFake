@@ -56,7 +56,7 @@ const contentData = {
        <div class="content-section-title">Sejarah dan Perkembangan Deepfake</div>
       <div class="content-card">
        
-        <p>Awal mula deepfake muncul sekitar tahun 2017, ketika komunitas pengembang di Reddit mulai bereksperimen dengan face-swapping menggunakan jaringan saraf tiruan (neural networks).<br>Sejak saat itu, kemampuan deepfake berkembang pesat. Kini, dengan hadirnya model besar seperti Veo 3, deepfake bukan hanya tentang mengganti wajah, tapi juga menciptakan seluruh adegan video yang belum pernah terjadi.Sejak saat itu, kemampuan deepfake berkembang pesat. Kini, dengan hadirnya model besar seperti Veo 3, deepfake bukan hanya tentang mengganti wajah, tapi juga menciptakan seluruh adegan video yang belum pernah terjadi.<br>Voice cloning juga berkembang dari sekadar sintetis suara robotik menjadi tiruan suara manusia yang hampir sempurna, berkat kemajuan speech synthesis dan neural vocoder seperti yang digunakan oleh MiniMax. </p>
+        <p>Awal mula deepfake muncul sekitar tahun 2017, ketika komunitas pengembang di Reddit mulai bereksperimen dengan face-swapping menggunakan jaringan saraf tiruan (neural networks).<br>Sejak saat itu, kemampuan deepfake berkembang pesat. Kini, dengan hadirnya model besar seperti Veo 3, deepfake bukan hanya tentang mengganti wajah, tapi juga menciptakan seluruh adegan video yang belum pernah terjadi.Sejak saat itu, kemampuan deepfake berkembang pesat.<br>Voice cloning juga berkembang dari sekadar sintetis suara robotik menjadi tiruan suara manusia yang hampir sempurna, berkat kemajuan speech synthesis dan neural vocoder seperti yang digunakan oleh MiniMax. </p>
       </div><br>
 
       <div class="content-section-title">Dampak dan Risiko Deepfake</div>
@@ -900,3 +900,4 @@ document.addEventListener('keydown', function(e) {
   }
 
 });
+
